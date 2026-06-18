@@ -63,7 +63,7 @@ export default function ProfileDropdown({
                         className="h-8 w-8 rounded-full object-cover"
                     />
                 ) : (
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-sm font-semibold text-white">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br from-emerald-500 to-emerald-600 text-sm font-semibold text-white">
                         {displayName.charAt(0).toUpperCase()}
                     </div>
                 )}

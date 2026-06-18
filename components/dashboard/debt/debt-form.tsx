@@ -1,10 +1,12 @@
-// components/debt/debt-form.tsx
 "use client";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Calendar, User, DollarSign, FileText, Tag, Save, Loader2 } from "lucide-react";
 import { debtSchema, type DebtInput } from "@/lib/validations/debt";
+import { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 type DebtFormProps = {
     defaultValues?: Partial<DebtInput>;
@@ -17,9 +19,13 @@ export default function DebtForm({
     onSubmit,
     isLoading = false,
 }: DebtFormProps) {
+    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
     const {
         register,
         handleSubmit,
+        setValue,
+        watch,
         formState: { errors },
     } = useForm<DebtInput>({
         resolver: zodResolver(debtSchema),
@@ -33,9 +39,29 @@ export default function DebtForm({
         },
     });
 
+    useEffect(() => {
+        if (defaultValues?.due_date) {
+            const date = new Date(defaultValues.due_date);
+            if (!isNaN(date.getTime())) {
+                setSelectedDate(date);
+            }
+        }
+    }, [defaultValues?.due_date]);
+
+    const handleDateChange = (date: Date | null) => {
+        setSelectedDate(date);
+        if (date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, "0");
+            const day = String(date.getDate()).padStart(2, "0");
+            setValue("due_date", `${year}-${month}-${day}`);
+        } else {
+            setValue("due_date", "");
+        }
+    };
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {/* Tipe */}
             <div className="space-y-1">
                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
                     Tipe <span className="text-rose-500">*</span>
@@ -60,7 +86,6 @@ export default function DebtForm({
                 )}
             </div>
 
-            {/* Nama */}
             <div className="space-y-1">
                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
                     Nama <span className="text-rose-500">*</span>
@@ -71,7 +96,7 @@ export default function DebtForm({
                     </div>
                     <input
                         type="text"
-                        placeholder="Nama orang"
+                        placeholder="Nama"
                         className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-700 transition-all placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:placeholder:text-slate-500"
                         {...register("counterpart_name")}
                         disabled={isLoading}
@@ -84,7 +109,6 @@ export default function DebtForm({
                 )}
             </div>
 
-            {/* Jumlah */}
             <div className="space-y-1">
                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
                     Jumlah (Rp) <span className="text-rose-500">*</span>
@@ -108,25 +132,21 @@ export default function DebtForm({
                 )}
             </div>
 
-            {/* Jatuh Tempo - Perbaikan untuk iOS */}
             <div className="space-y-1">
                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
                     Jatuh Tempo
                 </label>
                 <div className="relative">
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                        <Calendar className="h-4 w-4 text-slate-400 dark:text-slate-500" />
-                    </div>
-                    <input
-                        type="date"
-                        className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-700 transition-all focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
-                        style={{
-                            minWidth: "140px",
-                            WebkitAppearance: "none",
-                            appearance: "none",
-                        }}
-                        {...register("due_date")}
+                    <Calendar className="absolute left-3 top-1/2 z-10 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-500" />
+                    <DatePicker
+                        selected={selectedDate}
+                        onChange={handleDateChange}
+                        dateFormat="dd/MM/yyyy"
+                        placeholderText="Pilih tanggal"
+                        className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-700 transition-all placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:placeholder:text-slate-500"
                         disabled={isLoading}
+                        popperClassName="z-50"
+                        showPopperArrow={false}
                     />
                 </div>
                 {errors.due_date && (
@@ -136,7 +156,6 @@ export default function DebtForm({
                 )}
             </div>
 
-            {/* Catatan */}
             <div className="space-y-1">
                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
                     Catatan
@@ -160,7 +179,6 @@ export default function DebtForm({
                 )}
             </div>
 
-            {/* Submit Button */}
             <button
                 type="submit"
                 disabled={isLoading}

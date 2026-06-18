@@ -82,11 +82,12 @@ export default function LoginPage() {
                                 width={100}
                                 height={100}
                                 priority
+                                style={{ borderRadius: "12px" }}
                             />
                         </div>
                     </div>
                     <h1 className="bg-linear-to-r from-emerald-600 to-emerald-400 bg-clip-text text-3xl font-bold tracking-tight text-transparent dark:from-emerald-400 dark:to-emerald-300">
-                        Selamat Datang
+                        Kasbon App
                     </h1>
                     <p className="text-sm text-slate-600/80 dark:text-slate-400/80">
                         Masuk untuk kelola keuanganmu
@@ -106,7 +107,7 @@ export default function LoginPage() {
                             </div>
                             <input
                                 type="email"
-                                placeholder="Masukkan email kamu"
+                                placeholder="Email"
                                 className="w-full rounded-xl border border-white/30 bg-white/50 py-3 pl-10 pr-4 text-slate-900 backdrop-blur-sm transition-all placeholder:text-slate-400 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-slate-500"
                                 {...register("email")}
                                 disabled={isLoading}
@@ -125,12 +126,6 @@ export default function LoginPage() {
                             <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
                                 Password
                             </label>
-                            <Link
-                                href="/forgot-password"
-                                className="text-xs text-emerald-600 transition-colors hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300"
-                            >
-                                Lupa password?
-                            </Link>
                         </div>
                         <div className="relative">
                             <div className="absolute left-3 top-1/2 -translate-y-1/2">
@@ -138,7 +133,7 @@ export default function LoginPage() {
                             </div>
                             <input
                                 type={showPassword ? "text" : "password"}
-                                placeholder="Masukkan password"
+                                placeholder="Password"
                                 className="w-full rounded-xl border border-white/30 bg-white/50 py-3 pl-10 pr-12 text-slate-900 backdrop-blur-sm transition-all placeholder:text-slate-400 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-slate-500"
                                 {...register("password")}
                                 disabled={isLoading}
@@ -210,7 +205,7 @@ export default function LoginPage() {
                         href="/signup"
                         className="font-medium text-emerald-600 transition-colors hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300"
                     >
-                        Daftar sekarang
+                        Daftar
                     </Link>
                 </div>
 
