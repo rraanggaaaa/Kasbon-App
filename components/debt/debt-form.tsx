@@ -1,3 +1,4 @@
+// components/debt/debt-form.tsx
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -107,7 +108,7 @@ export default function DebtForm({
                 )}
             </div>
 
-            {/* Jatuh Tempo */}
+            {/* Jatuh Tempo - Perbaikan untuk iOS */}
             <div className="space-y-1">
                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
                     Jatuh Tempo
@@ -119,6 +120,11 @@ export default function DebtForm({
                     <input
                         type="date"
                         className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-700 transition-all focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+                        style={{
+                            minWidth: "140px",
+                            WebkitAppearance: "none",
+                            appearance: "none",
+                        }}
                         {...register("due_date")}
                         disabled={isLoading}
                     />
