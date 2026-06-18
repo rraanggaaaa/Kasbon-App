@@ -277,8 +277,8 @@ export default function DashboardPage() {
                             </p>
                             <p
                                 className={`text-2xl font-bold ${net >= 0
-                                        ? "text-emerald-600 dark:text-emerald-400"
-                                        : "text-rose-600 dark:text-rose-400"
+                                    ? "text-emerald-600 dark:text-emerald-400"
+                                    : "text-rose-600 dark:text-rose-400"
                                     }`}
                             >
                                 Rp {net.toLocaleString("id-ID")}
@@ -289,7 +289,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Filters - Liquid Glass */}
-            <div className="flex flex-col gap-3 rounded-2xl border border-white/20 bg-white/30 p-4 backdrop-blur-xl backdrop-saturate-150 dark:border-white/10 dark:bg-slate-900/40 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex flex-wrap items-center gap-3">
                     <div className="flex items-center gap-2">
                         <Filter className="h-4 w-4 text-slate-500 dark:text-slate-400" />
@@ -299,7 +299,7 @@ export default function DashboardPage() {
                     <select
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value as typeof statusFilter)}
-                        className="rounded-xl border border-white/30 bg-white/50 px-4 py-2 text-sm text-slate-700 backdrop-blur-sm transition-all focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/20 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"
+                        className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 transition-all focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
                     >
                         <option value="all">Semua Status</option>
                         <option value="unsettled">Belum Lunas</option>
@@ -309,7 +309,7 @@ export default function DashboardPage() {
                     <select
                         value={typeFilter}
                         onChange={(e) => setTypeFilter(e.target.value as typeof typeFilter)}
-                        className="rounded-xl border border-white/30 bg-white/50 px-4 py-2 text-sm text-slate-700 backdrop-blur-sm transition-all focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/20 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"
+                        className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 transition-all focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
                     >
                         <option value="all">Semua Tipe</option>
                         <option value="owed_to_me">Dihutang ke Saya</option>
@@ -319,7 +319,7 @@ export default function DashboardPage() {
                     {activeFiltersCount > 0 && (
                         <button
                             onClick={resetFilters}
-                            className="inline-flex items-center gap-1 rounded-xl px-3 py-2 text-sm text-rose-600 transition-colors hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-400/10"
+                            className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm text-rose-600 transition-colors hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-400/10"
                         >
                             <X className="h-4 w-4" />
                             <span>Reset</span>
@@ -331,7 +331,7 @@ export default function DashboardPage() {
                     {filteredDebts.length} kasbon
                 </span>
             </div>
-
+            
             {/* Debt List - Liquid Glass */}
             <div className="space-y-3">
                 {isLoading ? (
@@ -382,16 +382,16 @@ export default function DashboardPage() {
                                         <div className="flex flex-wrap items-center gap-2">
                                             <span
                                                 className={`inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${debt.type === "owed_to_me"
-                                                        ? "bg-emerald-500/20 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-400"
-                                                        : "bg-rose-500/20 text-rose-700 dark:bg-rose-400/10 dark:text-rose-400"
+                                                    ? "bg-emerald-500/20 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-400"
+                                                    : "bg-rose-500/20 text-rose-700 dark:bg-rose-400/10 dark:text-rose-400"
                                                     }`}
                                             >
                                                 {debt.type === "owed_to_me" ? "Dihutang ke Saya" : "Saya Berhutang"}
                                             </span>
                                             <span
                                                 className={`inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${debt.settled_at
-                                                        ? "bg-green-500/20 text-green-700 dark:bg-green-400/10 dark:text-green-400"
-                                                        : "bg-amber-500/20 text-amber-700 dark:bg-amber-400/10 dark:text-amber-400"
+                                                    ? "bg-green-500/20 text-green-700 dark:bg-green-400/10 dark:text-green-400"
+                                                    : "bg-amber-500/20 text-amber-700 dark:bg-amber-400/10 dark:text-amber-400"
                                                     }`}
                                             >
                                                 {debt.settled_at ? "Lunas" : "Belum Lunas"}
