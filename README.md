@@ -161,6 +161,69 @@ Estimasi waktu pengerjaan:
 | Total                       | ± 6 - 7 jam |
 
 ---
+# 📚 Additional Libraries
+
+Selain library utama, saya menggunakan beberapa library tambahan untuk meningkatkan developer experience, konsistensi UI, dan maintainability.
+
+| Library | Alasan Penggunaan |
+|---------|-------------------|
+| `@supabase/supabase-js` | Client resmi Supabase untuk Authentication, Database, dan Storage. |
+| `@supabase/ssr` | Mendukung autentikasi berbasis Server Components dan Middleware di Next.js App Router. |
+| `react-hook-form` | Mengelola state form dengan performa lebih baik dan mengurangi re-render. |
+| `zod` | Validasi schema yang type-safe dan dapat digunakan bersama React Hook Form maupun API Route. |
+| `@hookform/resolvers` | Menghubungkan React Hook Form dengan Zod secara langsung. |
+| `sonner` | Menampilkan toast notification dengan API yang sederhana dan tampilan modern. |
+| `lucide-react` | Icon library ringan dengan desain konsisten dan mudah dikustomisasi. |
+| `date-fns` | Membantu formatting tanggal seperti "3 hari lalu" dan manipulasi tanggal lainnya. |
+| `clsx` | Menggabungkan className secara kondisional agar kode lebih bersih dan mudah dibaca. |
+| `tailwind-merge` | Menghindari konflik class Tailwind saat menggunakan className dinamis. |
+
+---
+
+### Kenapa tidak menggunakan Redux?
+
+Saya memilih menggunakan state bawaan React (`useState`, `useEffect`) karena kebutuhan state management pada aplikasi ini masih relatif sederhana. Dengan pendekatan ini, kompleksitas project dapat dikurangi tanpa mengorbankan maintainability.
+
+---
+
+### Kenapa menggunakan API Route daripada langsung memanggil Supabase dari Client?
+
+Saya memilih menggunakan Next.js API Route sebagai lapisan backend karena:
+
+- Menjaga akses database tetap berada di server.
+- Validasi request dapat dilakukan secara terpusat.
+- Mempermudah penambahan business logic di masa depan.
+- Lebih aman karena client tidak berinteraksi langsung dengan query database.
+
+---
+
+### Kenapa menggunakan Partial Payment?
+
+Saya memilih mendukung **partial payment** daripada hanya tombol "Lunas" karena lebih merepresentasikan kondisi nyata.
+
+Contoh:
+
+```text
+Pinjam Rp1.000.000
+
+↓
+
+Bayar Rp300.000
+
+↓
+
+Sisa Rp700.000
+
+↓
+
+Bayar Rp700.000
+
+↓
+
+Status otomatis berubah menjadi Lunas
+```
+
+Pendekatan ini membuat aplikasi lebih fleksibel dan realistis dibanding hanya menyimpan status boolean `is_paid`.
 
 # 📄 License
 
