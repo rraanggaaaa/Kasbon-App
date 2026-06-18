@@ -1,4 +1,3 @@
-// components/layout/logout-button.tsx
 "use client";
 
 import { useState } from "react";
@@ -36,14 +35,20 @@ export default function LogoutButton() {
         <button
             onClick={handleLogout}
             disabled={isLoading}
-            className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-rose-600 transition-colors hover:bg-rose-50 disabled:opacity-50 dark:text-rose-400 dark:hover:bg-rose-400/10"
+            className="group relative flex w-full items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-sm font-medium text-rose-600 transition-all hover:bg-rose-50 hover:text-rose-700 disabled:opacity-60 disabled:cursor-not-allowed dark:text-rose-400 dark:hover:bg-rose-400/10 dark:hover:text-rose-300"
         >
             {isLoading ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <span>Logout...</span>
+                </>
             ) : (
-                <LogOut className="h-4 w-4" />
+                <>
+                    <LogOut className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+                    <span>Logout</span>
+                    <div className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-rose-500/10 via-rose-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                </>
             )}
-            <span>Logout</span>
         </button>
     );
 }
