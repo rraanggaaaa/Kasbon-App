@@ -26,7 +26,7 @@ export default function Home() {
               <div className="absolute -inset-6 rounded-full bg-gradient-to-r from-emerald-400/20 via-emerald-300/10 to-emerald-400/20 blur-2xl" />
               <div className="relative rounded-2xl border border-white/30 bg-white/40 p-2 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5">
                 <Image
-                  className="relative dark:invert"
+                  className="relative"
                   src="/kasbon.png"
                   alt="Kasbon logo"
                   width={72}

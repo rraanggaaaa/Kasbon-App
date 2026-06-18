@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-    User,
     Mail,
     LogOut,
     ChevronDown,
@@ -11,6 +10,7 @@ import {
     UserCircle,
 } from "lucide-react";
 import { toast } from "sonner";
+import { createClient } from "@/lib/supabase/client";
 
 type ProfileDropdownProps = {
     email: string;
@@ -24,6 +24,7 @@ export default function ProfileDropdown({
     avatarUrl
 }: ProfileDropdownProps) {
     const router = useRouter();
+    const supabase = createClient();
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -32,14 +33,10 @@ export default function ProfileDropdown({
     async function handleLogout() {
         setIsLoading(true);
         try {
-            const res = await fetch("/api/auth/logout", {
-                method: "POST",
-            });
+            const { error } = await supabase.auth.signOut();
 
-            const json = await res.json();
-
-            if (!res.ok) {
-                toast.error(json.message ?? "Gagal logout");
+            if (error) {
+                toast.error(error.message);
                 return;
             }
 
@@ -55,7 +52,6 @@ export default function ProfileDropdown({
 
     return (
         <div className="relative">
-            {/* Trigger Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center gap-2 rounded-full border border-white/20 bg-white/30 px-2 py-1.5 backdrop-blur-sm transition-all hover:bg-white/50 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
@@ -67,7 +63,7 @@ export default function ProfileDropdown({
                         className="h-8 w-8 rounded-full object-cover"
                     />
                 ) : (
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br from-emerald-500 to-emerald-600 text-sm font-semibold text-white">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-sm font-semibold text-white">
                         {displayName.charAt(0).toUpperCase()}
                     </div>
                 )}
@@ -80,18 +76,14 @@ export default function ProfileDropdown({
                 />
             </button>
 
-            {/* Dropdown Menu */}
             {isOpen && (
                 <>
-                    {/* Backdrop */}
                     <div
                         className="fixed inset-0 z-40"
                         onClick={() => setIsOpen(false)}
                     />
 
-                    {/* Menu */}
                     <div className="absolute right-0 z-50 mt-2 w-56 rounded-2xl border border-white/20 bg-white/90 p-1.5 shadow-2xl shadow-emerald-500/5 backdrop-blur-xl backdrop-saturate-150 dark:border-white/10 dark:bg-slate-900/90">
-                        {/* User Info */}
                         <div className="border-b border-white/10 px-3 py-3 dark:border-white/5">
                             <p className="text-sm font-medium text-slate-900 dark:text-white">
                                 {displayName}
@@ -102,7 +94,6 @@ export default function ProfileDropdown({
                             </p>
                         </div>
 
-                        {/* Menu Items */}
                         <div className="py-1">
                             <button
                                 onClick={() => {
@@ -114,12 +105,20 @@ export default function ProfileDropdown({
                                 <UserCircle className="h-4 w-4" />
                                 <span>Profile</span>
                             </button>
+                            <button
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    router.push("/settings");
+                                }}
+                                className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800/50"
+                            >
+                                <Settings className="h-4 w-4" />
+                                <span>Settings</span>
+                            </button>
                         </div>
 
-                        {/* Divider */}
                         <div className="border-t border-white/10 dark:border-white/5" />
 
-                        {/* Logout */}
                         <div className="py-1">
                             <button
                                 onClick={handleLogout}
