@@ -103,7 +103,7 @@ export default function SignupPage() {
                         <div className="absolute -inset-6 rounded-full bg-gradient-to-r from-emerald-400/20 via-emerald-300/10 to-emerald-400/20 blur-2xl" />
                         <div className="relative rounded-2xl border border-white/30 bg-white/40 p-2 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5">
                             <Image
-                                className="relative dark:invert"
+                                className="relative"
                                 src="/kasbon.png"
                                 alt="Kasbon logo"
                                 width={100}
@@ -267,13 +267,13 @@ export default function SignupPage() {
                         </button>
                         <p className="text-xs text-slate-600 dark:text-slate-400">
                             Saya menyetujui{" "}
-                            <Link href="/terms" className="text-emerald-600 hover:underline dark:text-emerald-400">
+                            <span className="text-emerald-600 dark:text-emerald-400">
                                 Syarat & Ketentuan
-                            </Link>{" "}
+                            </span>{" "}
                             dan{" "}
-                            <Link href="/privacy" className="text-emerald-600 hover:underline dark:text-emerald-400">
+                            <span className="text-emerald-600 dark:text-emerald-400">
                                 Kebijakan Privasi
-                            </Link>
+                            </span>
                         </p>
                     </div>
 
@@ -327,8 +327,8 @@ export default function SignupPage() {
                         Masuk sekarang
                     </Link>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
 
