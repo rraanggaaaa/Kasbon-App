@@ -228,3 +228,4 @@ Pendekatan ini membuat aplikasi lebih fleksibel dan realistis dibanding hanya me
 # 📄 License
 
 MIT License.
+Rangga

@@ -105,16 +105,6 @@ export default function ProfileDropdown({
                                 <UserCircle className="h-4 w-4" />
                                 <span>Profile</span>
                             </button>
-                            <button
-                                onClick={() => {
-                                    setIsOpen(false);
-                                    router.push("/settings");
-                                }}
-                                className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800/50"
-                            >
-                                <Settings className="h-4 w-4" />
-                                <span>Settings</span>
-                            </button>
                         </div>
 
                         <div className="border-t border-white/10 dark:border-white/5" />
