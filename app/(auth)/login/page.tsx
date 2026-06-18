@@ -54,7 +54,7 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50/30 px-4 dark:from-slate-950 dark:via-slate-900 dark:to-emerald-950/20">
+        <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-linear-to-br from-slate-50 via-white to-emerald-50/30 px-4 dark:from-slate-950 dark:via-slate-900 dark:to-emerald-950/20">
             {/* Animated Background Orbs */}
             <div className="absolute -left-[20%] top-[-10%] h-[600px] w-[600px] rounded-full bg-emerald-400/20 blur-3xl dark:bg-emerald-500/10" />
             <div className="absolute -right-[20%] bottom-[-10%] h-[600px] w-[600px] rounded-full bg-blue-400/20 blur-3xl dark:bg-blue-500/10" />
@@ -73,7 +73,7 @@ export default function LoginPage() {
                 {/* Header */}
                 <div className="mb-8 flex flex-col items-center gap-2 text-center">
                     <div className="relative">
-                        <div className="absolute -inset-6 rounded-full bg-gradient-to-r from-emerald-400/20 via-emerald-300/10 to-emerald-400/20 blur-2xl" />
+                        <div className="absolute -inset-6 rounded-full bg-linear-to-r from-emerald-400/20 via-emerald-300/10 to-emerald-400/20 blur-2xl" />
                         <div className="relative rounded-2xl border border-white/30 bg-white/40 p-2 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5">
                             <Image
                                 className="relative"
@@ -85,7 +85,7 @@ export default function LoginPage() {
                             />
                         </div>
                     </div>
-                    <h1 className="bg-gradient-to-r from-emerald-600 to-emerald-400 bg-clip-text text-3xl font-bold tracking-tight text-transparent dark:from-emerald-400 dark:to-emerald-300">
+                    <h1 className="bg-linear-to-r from-emerald-600 to-emerald-400 bg-clip-text text-3xl font-bold tracking-tight text-transparent dark:from-emerald-400 dark:to-emerald-300">
                         Selamat Datang
                     </h1>
                     <p className="text-sm text-slate-600/80 dark:text-slate-400/80">
@@ -167,7 +167,7 @@ export default function LoginPage() {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="group relative inline-flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-8 text-base font-semibold text-white shadow-lg shadow-emerald-500/25 transition-all hover:shadow-xl hover:shadow-emerald-500/35 disabled:opacity-70 disabled:cursor-not-allowed active:scale-95"
+                        className="group relative inline-flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-linear-to-r from-emerald-500 to-emerald-600 px-8 text-base font-semibold text-white shadow-lg shadow-emerald-500/25 transition-all hover:shadow-xl hover:shadow-emerald-500/35 disabled:opacity-70 disabled:cursor-not-allowed active:scale-95"
                     >
                         {isLoading ? (
                             <>
@@ -199,7 +199,7 @@ export default function LoginPage() {
                                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </>
                         )}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                        <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                     </button>
                 </form>
 
